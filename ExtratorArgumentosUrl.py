@@ -4,6 +4,20 @@ class ExtratorArgumentosUrl:
             self.url = url.lower()
         else:
             raise LookupError("Url inválida")
+
+    def __str__(self):
+        moedaOrigem, moedaDestino = self.extraiArgumentos()
+        representacaoString2 = "Valor:" + self.extraiValor() + " " + moedaOrigem + " " + moedaDestino
+        representacaoString = "Valor: {}\n Moeda Origem: {} \n Moeda Destino: {} \n".format(self.extraiValor(),
+                                                                                            moedaOrigem, moedaDestino)
+        return representacaoString
+
+    def __len__(self):
+        return len(self.url)
+
+    def __eq__(self, outraInstancia):
+        return self.url == outraInstancia.url
+
     @staticmethod
     def stringEhValida(url):
         if url:
